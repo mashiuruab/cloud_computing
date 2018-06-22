@@ -1,3 +1,5 @@
+# 4(a) pending. Need to read explicitly the aws credentials from a file
+
 import boto3
 import botocore
 import os
