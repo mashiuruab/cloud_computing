@@ -3,7 +3,7 @@
 import boto3
 import botocore
 import os
-#import configparser
+import configparser
 
 BUCKET_NAME = 'mashiur' # replace with your bucket name
 KEY = '332.cpp' # replace with your object key
@@ -18,21 +18,19 @@ session = boto3.Session(
 )
 '''
 
-'''
-config = ConfigParser.ConfigParser()
-config.read('.aws/credentials')
+
+config = configparser.ConfigParser()
+# name of the credential file.
+
+config.read('./credentials')
+
 access_key_id = config['default']['aws_access_key_id']
 secret_key = config['default']['aws_secret_access_key']
 
-print (access_key_id)
-
-#print (secret_key)
-
-'''
 
 session = boto3.Session(
-    aws_access_key_id='AKIAJ2AQUB4NEAQJPUAQ',
-    aws_secret_access_key='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',
+    aws_access_key_id=access_key_id,
+    aws_secret_access_key=secret_key,
 )
 
 s3 = session.resource('s3')
@@ -41,7 +39,7 @@ s3_client =  session.client('s3');
 def delete_file_s3(bucket_name, key) :
 	# do we need any error handling here
 	s3.Object(bucket_name, key).delete()
-	print "deleted successfully from  s3"
+	print("deleted successfully from  s3")
 
 def read_file(path) :
 	file = open(FILE_PATH, "r")
@@ -57,18 +55,18 @@ def write_file(path, str_value) :
 
 def download_from_s3(bucket_name, key, path) :
 	s3.Bucket(bucket_name).download_file(key, path)
-	print "downloaded successfully from s3"
+	print("downloaded successfully from s3")
 
 
 def upload_s3(file_path, bucket_name, key_name) :
 	# Upload tmp.txt to bucket-name at key-name
 	s3_client.upload_file(file_path, bucket_name, key_name)
 	# do i need to do any kind of error handling here
-	print "uploaded  successfully to s3"
+	print("uploaded  successfully to s3")
 
 def get_IO() :
-	name = raw_input("Enter your name: ")   # Python 2.x
-	# name = input("Enter your name: ")	# Python 3
+	#name = raw_input("Enter your name: ")   # Python 2.x
+	name = input("Enter your name: ")	# Python 3
 
 	return name;
 
@@ -81,9 +79,9 @@ def main() :
 	try:
 		# s3.Bucket(BUCKET_NAME).download_file(KEY, FILE_PATH)
 		download_from_s3(BUCKET_NAME, U_KEY, FILE_PATH)
-		print "..........................."
-		print "Content found inside the file is "
-		print read_file(FILE_PATH)
+		print("...........................")
+		print("Content found inside the file is ")
+		print(read_file(FILE_PATH))
 		delete_file_s3(BUCKET_NAME, U_KEY)
 		os.remove(FILE_PATH)
 
