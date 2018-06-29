@@ -22,7 +22,7 @@ session = boto3.Session(
 config = configparser.ConfigParser()
 # name of the credential file.
 
-config.read('./credentials')
+config.read('./awskeys')
 
 access_key_id = config['default']['aws_access_key_id']
 secret_key = config['default']['aws_secret_access_key']
