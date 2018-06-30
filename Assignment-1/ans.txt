@@ -1,0 +1,44 @@
+# need to explain why
+
+1. a) prtivate cloud
+- Need to deal with sensitive medical record.
+
+b) public cloud
+
+- One time computation cost.
+- Need to hire resources for short period of time.
+
+c) Hybrid Cloud
+- Need to deal with both confidential and non-sensitive data.
+- For confidential data they can use private cloud.
+- For non-sensitive data they can use public cloud.
+
+d) Community Cloud
+
+- As per definition community cloud generally formed by like minded groups.
+- So the astronomy departments collaborating with others may form this kind of community cloud.
+
+2. State B
+Reason :
+
+a) Weather is cooler with respect to state A 
+b) Electricity cost low
+
+3.
+a) storage cloud service provider.
+
+The reasons are as follows :
+
+1. The company need to store streaming data 1 GB/hour 
+2. Storage cost is 1/5 times than the local provider's storage
+3. Don't need frequent data access.
+4. Don't need to pay system administrator's salary.
+
+b) They should use local (private) cloud
+
+1. Security is the main concern as they are storing medical record.
+
+2. Otherwise public cloud would have been the best option. 
+a) Storage cost is 5 times higher, 
+b) Need to pay system administrators salary, 
+c) Need frequent data access but data volume is not that much high, so cost of accessing data frequently is not that much significant.

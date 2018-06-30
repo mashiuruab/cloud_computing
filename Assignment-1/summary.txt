@@ -1,0 +1,12 @@
+1. Distributed Computing Cluster Management is an overhead for even sophisticated users. Most of the users are comfortable with writting single threaded version rather than complex distributed systems code.
+2. Proposed Stateless functions in serverless execution model is a viable alternative to avoid this overhead.
+3. By Implementing the prototype Py-Wren authors have shown this  model is general enough to solve different Distribute Computing problems.
+4. In this model function is deployed once, invoked repeatedly whenever new inputs arrive and scales with input size. The inputs are supplied from a shared remote storage system. Here users can dynamically inject code in those functions.
+5. The state management is done by a global scheduler and fast remote storage.
+6. Authors have shown that existing remote storage system is not a significant bottleneck. Prior works has also shown that hard disk locality does not provide significant performance benefit. That's why a major design goal of the previous systems "collocating computation and data" have diminished.
+7. Stateless functions allows simple fault tolerance semantics and makes parallel jobs easy to use.
+ 
+
+
+
+Distributed Computing Cluster Management is an overhead for even sophisticated users. Most of the users are comfortable with writting single threaded version rather than complex distributed systems code. Proposed Stateless functions in serverless execution model is a viable alternative to avoid this overhead. By Implementing the prototype Py-Wren authors have shown this  model is general enough to solve different Distribute Computing problems. In this model function is deployed once, invoked repeatedly whenever new inputs arrive and scales with input size. The inputs are supplied from a shared remote storage system. Here users can dynamically inject code in those functions. The state management is done by a global scheduler and fast remote storage. Authors have shown that existing remote storage system is not a significant bottleneck. Prior works has also shown that hard disk locality does not provide significant performance benefit. That's why a major design goal of the previous systems "collocating computation and data" have diminished. Stateless functions allows simple fault tolerance semantics and makes parallel jobs easy to use.
