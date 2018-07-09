@@ -1,0 +1,43 @@
+Main Goal of the project
+
+1. Implement a distributed machine learning application using the cloud infrastructure.
+2. we want to train a model using gradient descent algorithm in the cloud environment
+3. a) training set is large.
+   b) data is too big to fit in a single machine's memory
+   c) By doing the computation in a cluster of machines, using the memory, computation power, cores etc would accelerate any kind of training algorithm.
+   d) If the training set is reasonably large, the network communication cost to accumulate the batch result would be amortized.
+   e) More specifically we are planning to implement Gradient Descent algorithm in a cloud environment.
+
+Approach :
+
+1. Load the data set in a storage system (Amazon S3), this storage should be accessible from all the machines in the cluster.
+2. We need to find a way to divide the data sets into p parts assuming cluster size p. 
+3. In case the assigned data set on a particular machine does not fit into memory, we need to find a way to load data batch wise in memory to make computation faster.
+4. We would use c++ for implementation as file read write would be much faster.
+5. To accumulate the partial result of each machine, we can use MPI (https://en.wikipedia.org/wiki/Message_Passing_Interface).   
+
+Benefits : 
+
+1. Training time would be faster.
+2. Developers would face the challenges and complication of implementing scalable distributed machine learning algorithms.
+3. As the training time would be order of magniture faster, users can train model in a short period time.
+4. After successful implementation of this project developers might try to find solution of more complex distributed machine learing algorithms.
+
+Competition :
+
+The competition is mainly with the data set size. By leveraging the computation power of a cluster we can train model with reasonably short period of time. 
+
+
+Cloud Features :
+
+1. Amazon EC2 instance
+2. Amazon S3 for storage
+3. The most important thing, training would be done once. After that we can release the resources. 
+
+Cost Benefit and Analysis :
+
+We can copy this from guimu proposal.
+
+Planned Project timeline :
+
+Need to discuss with the other team members to finalize it.

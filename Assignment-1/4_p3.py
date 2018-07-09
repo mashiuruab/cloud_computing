@@ -1,4 +1,8 @@
 # 4(a) pending. Need to read explicitly the aws credentials from a file
+# how to run the program
+# file "awskeys" with credentials are attached with the distribution
+# need to install python 3 to run script properly
+# python 4_p3.py
 
 import boto3
 import botocore

@@ -1,3 +1,4 @@
-1st_module
-2nd_module
 *_module
+.idea
+cmake-build-debug
+run

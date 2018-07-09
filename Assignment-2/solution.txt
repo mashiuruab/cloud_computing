@@ -1,0 +1,20 @@
+1. 
+a) - For new malware analysis, virtual machine can be considered as a test environment. 
+   - So any kind of malicious action would not cause harm to anyone. Suppose in the host environment, there might be data which can be encrypted by malware.
+   - Giving hardware access to the malware would need new classes of threat detection.
+
+b) - Use virtual machines to avoid any kind of unwanted situation while doing experiments.
+   - Can run multiple experiments concurrently on different virtual machines.
+   - In the host environment there can be only one operating system running. Using virtual machines within the host give flexibility to do experiments on different environment simultaneously.
+
+2.
+I would prefer option b.
+
+- hypervisor is a thin layer of virtualization, it's overhead is not that much visible.
+- Possible to utilize resource better.
+- Controlled seperation of different Virtual Enviroment.
+- Migrate resource optimally in case of hardware failure.
+- Standardize the experience regardless of the underlying hardware.
+- Optimal uses of space, colling system and other resources.
+
+ 
