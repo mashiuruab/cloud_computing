@@ -53,6 +53,9 @@ int main(int argc, char** argv) {
 
     print_buffer(recv_buffer, number_of_process * BATCH_SIZE, my_rank);
 
+    free(send_buffer);
+    free(recv_buffer);
+
     MPI_Finalize();
 
     return 0;

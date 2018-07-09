@@ -4,4 +4,4 @@ include_directories(/usr/local/mpich/include)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(mpi_test main_back.cpp)
+add_executable(mpi_test main.cpp)
