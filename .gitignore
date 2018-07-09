@@ -2,3 +2,5 @@
 .idea
 cmake-build-debug
 run
+project/hourly-weather-surface-brazil-southeast-region.zip
+project/sudeste.csv
