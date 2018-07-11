@@ -9,26 +9,14 @@ using namespace std;
 
 #define BATCH_SIZE 10
 
-void generate_data(double *data, int rank) {
-    double lower_bound = 0;
-    double upper_bound = BATCH_SIZE;
-    std::uniform_real_distribution<double> unif(lower_bound,upper_bound);
-    std::default_random_engine re;
-
-    for(int i=0;i<upper_bound;i++) {
-        double a_random_double = unif(re);
-        data[i] = double(rank * 100) + a_random_double;
-    }
-}
-
-void print_buffer(double* recv_buffer, int data_size, int rank) {
+void print_buffer(vector<double> &recv_buffer, int rank) {
     string file_name = to_string(rank) + ".txt";
 
     remove(file_name.c_str());
 
     ofstream file(file_name);
 
-    for(int i=0;i<data_size;i++){
+    for(int i=0;i<recv_buffer.size();i++){
         file<<recv_buffer[i]<<endl;
     }
 
@@ -72,6 +60,26 @@ vector<double> getTrainedTheta() {
     return theta;
 }
 
+vector<double> get_avg(vector<double> &acc_theta, int &number_of_process) {
+    int batch_size = acc_theta.size() / number_of_process;
+
+    vector<double> result;
+    result.resize(batch_size);
+
+    for(int i=0;i<batch_size;i++) {
+        double sum = 0.0;
+        int offset = 0;
+        for(int j=0;j<number_of_process;j++) {
+            sum += acc_theta[i + offset];
+            offset += batch_size;
+        }
+
+        result[i] = sum / (double) number_of_process;
+    }
+
+    return result;
+}
+
 int main(int argc, char** argv) {
     MPI_Init(NULL, NULL);
 
@@ -81,29 +89,24 @@ int main(int argc, char** argv) {
     int my_rank;
     MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
 
-    double* send_buffer;
-    send_buffer = (double*) malloc(BATCH_SIZE * sizeof(double));
-    generate_data(send_buffer, my_rank);
+    vector<double> theta = getTrainedTheta(); // send_buffer
 
-    double* recv_buffer = (double*) malloc(number_of_process * BATCH_SIZE * sizeof(double));
+    cout << endl;
+    for (size_t i = 0; i < theta.size(); i++)
+        cout << "th" << i << " = " << theta[i] << " ";
+    cout << endl;
 
-    MPI_Allgather(send_buffer, BATCH_SIZE, MPI_DOUBLE, recv_buffer, BATCH_SIZE, MPI_DOUBLE, MPI_COMM_WORLD);
+    vector<double> acc_theta;
+    acc_theta.resize(number_of_process * theta.size());
 
-    print_buffer(recv_buffer, number_of_process * BATCH_SIZE, my_rank);
+    MPI_Allgather(&theta[0], theta.size(), MPI_DOUBLE, &acc_theta[0], theta.size(), MPI_DOUBLE, MPI_COMM_WORLD);
 
-    free(send_buffer);
-    free(recv_buffer);
+    vector<double> avg_theta = get_avg(acc_theta, number_of_process);
+
+    print_buffer(avg_theta, my_rank);
+
 
     MPI_Finalize();
-
-    if(my_rank == 0) {
-        vector<double> theta = getTrainedTheta();
-
-        cout << endl;
-        for (size_t i = 0; i < theta.size(); i++)
-            cout << "th" << i << " = " << theta[i] << " ";
-        cout << endl;
-    }
 
     return 0;
 }
