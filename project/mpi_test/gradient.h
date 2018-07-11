@@ -12,17 +12,19 @@ using std::endl;
 class TrainingExample
 {
     private:
-        vector<int> features;
-        int target;
+        vector<double> features;
+        double target;
     public:
-        TrainingExample(vector<int>& feat, int tar)
+        TrainingExample(vector<double>& feat, double tar)
         {
             features = feat;
             target = tar;
         }
-        int getFeature(int i) { return features.at(i); }
-        vector<int>& getFeatures() { return features; }
-        int getTarget() { return target; }
+
+        double getFeature(int i) { return features.at(i); }
+        vector<double>& getFeatures() { return features; }
+
+        double getTarget() { return target; }
 };
 
 class Hypothesis
@@ -32,7 +34,7 @@ class Hypothesis
         vector<TrainingExample> ts;
         unsigned mExamples, nFeatures;
 
-        double H(vector<double>& ntheta, vector<int>& features)
+        double H(vector<double>& ntheta, vector<double>& features)
         {
             //cout << "H(x) = ";
             double sum = 0.0;
@@ -57,7 +59,7 @@ class Hypothesis
         }
 
     public:
-        Hypothesis(vector<TrainingExample>& examples)
+        Hypothesis(vector<TrainingExample>& examples) //  mashiur : I think it would not used from our code
         {
             nFeatures = 0;
             ts = examples;
