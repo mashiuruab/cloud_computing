@@ -30,7 +30,7 @@ vector<TrainingExample> getData() {
         for (int j = 0; j < N; j++)
         {
             f >> feat[j+1];
-            feat[j+1] = current_process_rank + feat[j+1]; // TODO:: need to remove
+            //feat[j+1] = current_process_rank + feat[j+1]; // TODO:: need to remove
         }
         f >> y;
 
